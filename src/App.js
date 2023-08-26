@@ -21,18 +21,9 @@ function App() {
     <div className="App">
       <div className="container">
 
-        {/* <Header setData={setData} setIsLoading={setIsLoading}/> */}
-
-        {/* <Main data={data} isLoading={isLoading}/> */}
-
         <Header />
 
-
         <Main />
-
-
-        
-        {/* <TestComponent /> */}
 
       </div>
 

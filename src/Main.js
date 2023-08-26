@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import weatherData from "./redux_toolkit/weatherData";
 
 
 
-const Main = ({data, isLoading}) => {
+const Main = () => {
+    // Get the data from the store, using the useSelector hook
+    const { data } = useSelector(state => state.weatherData);
+    let { isLoading } = useSelector(state => state.weatherData.isLoading);
+
 
 
     // Capitalize the first letter of a word in a string
@@ -88,11 +93,11 @@ const Main = ({data, isLoading}) => {
 
 // In order to get the state as from the store, we create the 'mapStateToProps' function. It
 // takes the store state as a propery and returns an Object, with the props(data), we want from the  store
-const mapStateToProps = (state) => {
-    return {
-        data: state.data,
-        isLoading: state.isLoading
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         data: state.data,
+//         isLoading: state.isLoading
+//     }
+// }
 
-export default connect(mapStateToProps)(Main);
+export default Main;

@@ -1,10 +1,16 @@
 import { useState, useEffect, useRef } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import LoadingSpinner from "./LoadingSpinner";
+// Import actions
+import { sendData, isLoading, loadingState } from "./redux_toolkit/weatherData"
 
 
 
-const Header = ({ isLoading, sendData, loadingState }) => {
+const Header = () => {
+    //configure the dispatcher, using the useDispatch hook
+    // when we call it we will pass the actions we have set for that reducer / slice
+    let { isLoading } = useSelector(state => state.weatherData.isLoading);
+    const dispatch = useDispatch();
 
     // API credentails
     const owm_api_key = "8b0e43f517b46e5f056127d61f23aec8";
@@ -98,7 +104,7 @@ const Header = ({ isLoading, sendData, loadingState }) => {
     function fetchResults(cityID) {
         // Set Loading...
         isLoading = true;
-        loadingState(isLoading);
+        dispatch(loadingState(isLoading));
 
         fetch(`http://api.openweathermap.org/data/2.5/forecast?id=${cityID}&appid=${owm_api_key}&units=metric`)
             .then(response => {
@@ -110,16 +116,16 @@ const Header = ({ isLoading, sendData, loadingState }) => {
             .then((data) => {
                 //Clear Loading...
                 isLoading = false;
-                loadingState(isLoading);
+                dispatch(loadingState(isLoading));
                 //setData(data);
-                sendData(data)
+                dispatch(sendData(data));
                 // Clear the warning
                 setWarning(null);
             })
             .catch(err => {
                 //Clear Loading...
                 isLoading = false;
-                loadingState(isLoading);
+                dispatch(loadingState(isLoading));
                 setWarning(err.message);
             }) // end of fetch.then.then.catch
         // Clear the input
@@ -155,6 +161,7 @@ const Header = ({ isLoading, sendData, loadingState }) => {
             // Clear the search results
             setSearchResults(null);
 
+
             // Get the data for the selected City - normal fetch
             fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${owm_api_key}&units=metric`)
                 .then(response => {
@@ -166,9 +173,9 @@ const Header = ({ isLoading, sendData, loadingState }) => {
                 .then((data) => {
                     //Clear Loading...
                     isLoading = false;
-                    loadingState(isLoading);
+                    dispatch(loadingState(isLoading));
                     //setData(data);
-                    sendData(data)
+                    dispatch(sendData(data));
                     // Clear the warning
                     setWarning(null);
 
@@ -176,7 +183,7 @@ const Header = ({ isLoading, sendData, loadingState }) => {
                 .catch(err => {
                     //Clear Loading...
                     isLoading = false;
-                    loadingState(isLoading);
+                    dispatch(loadingState(isLoading));
                     setWarning(err.message);
                 }) // end of fetch.then.then.catch
             // Clear the input
@@ -225,30 +232,30 @@ const Header = ({ isLoading, sendData, loadingState }) => {
 
 // Prepare the macStateToProps and mapDispatchToProps functions
 
-const mapStateToProps = (state) => {
-    return {
-        isLoading: state.isLoading,
-        sendData: state.sendData,
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         isLoading: state.isLoading,
+//         sendData: state.sendData,
+//     }
+// }
 
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        sendData: (data) => {
-            dispatch({
-                type: 'SEND_DATA',
-                value: data
-            })
-        },
-        loadingState: (isLoading) => {
-            dispatch({
-                type: 'LOADING_STATE',
-                value: isLoading
-            })
-        }
-    }
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         sendData: (data) => {
+//             dispatch({
+//                 type: 'SEND_DATA',
+//                 value: data
+//             })
+//         },
+//         loadingState: (isLoading) => {
+//             dispatch({
+//                 type: 'LOADING_STATE',
+//                 value: isLoading
+//             })
+//         }
+//     }
+// }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;
