@@ -7,7 +7,9 @@ import weatherData from "./redux_toolkit/weatherData";
 const Main = () => {
     // Get the data from the store, using the useSelector hook
     const { data } = useSelector(state => state.weatherData);
-    let { isLoading } = useSelector(state => state.weatherData.isLoading);
+    let { isLoading } = useSelector(state => state.weatherData);
+
+    console.log(isLoading);
 
 
 

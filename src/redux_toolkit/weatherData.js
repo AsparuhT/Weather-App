@@ -18,7 +18,8 @@ export const weatherData = createSlice({
     //     state.isLoading = action.payload
     // },
     loadingState: (state, action) => {
-        state.isLoading = action.payload
+        state.isLoading = action.payload;
+        console.log('From the loadingState reducer - ' + isLoading);
     }
     // incrementByAmount: (state, action) => {
     //   state.value += action.payload

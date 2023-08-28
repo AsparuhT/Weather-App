@@ -9,7 +9,7 @@ import { sendData, isLoading, loadingState } from "./redux_toolkit/weatherData"
 const Header = () => {
     //configure the dispatcher, using the useDispatch hook
     // when we call it we will pass the actions we have set for that reducer / slice
-    let { isLoading } = useSelector(state => state.weatherData.isLoading);
+    let { isLoading } = useSelector(state => state.weatherData);
     const dispatch = useDispatch();
 
     // API credentails
@@ -103,8 +103,7 @@ const Header = () => {
     // Fetch results if <li> element is clicked on
     function fetchResults(cityID) {
         // Set Loading...
-        isLoading = true;
-        dispatch(loadingState(isLoading));
+        dispatch(loadingState(true));
 
         fetch(`http://api.openweathermap.org/data/2.5/forecast?id=${cityID}&appid=${owm_api_key}&units=metric`)
             .then(response => {
@@ -115,8 +114,7 @@ const Header = () => {
             })
             .then((data) => {
                 //Clear Loading...
-                isLoading = false;
-                dispatch(loadingState(isLoading));
+                dispatch(loadingState(false));
                 //setData(data);
                 dispatch(sendData(data));
                 // Clear the warning
@@ -124,8 +122,7 @@ const Header = () => {
             })
             .catch(err => {
                 //Clear Loading...
-                isLoading = false;
-                dispatch(loadingState(isLoading));
+                dispatch(loadingState(false));
                 setWarning(err.message);
             }) // end of fetch.then.then.catch
         // Clear the input
@@ -154,8 +151,7 @@ const Header = () => {
     function enterKeyEventListener(e) {
         if (e.key === 'Enter') {
             // Set Loading...
-            isLoading = true;
-            loadingState(isLoading);
+            dispatch(loadingState(true));
             // Clear the timer
             clearTimeout(searchTimerRef.current);
             // Clear the search results
@@ -172,8 +168,7 @@ const Header = () => {
                 })
                 .then((data) => {
                     //Clear Loading...
-                    isLoading = false;
-                    dispatch(loadingState(isLoading));
+                    dispatch(loadingState(false));
                     //setData(data);
                     dispatch(sendData(data));
                     // Clear the warning
@@ -182,8 +177,7 @@ const Header = () => {
                 })
                 .catch(err => {
                     //Clear Loading...
-                    isLoading = false;
-                    dispatch(loadingState(isLoading));
+                    dispatch(loadingState(false));
                     setWarning(err.message);
                 }) // end of fetch.then.then.catch
             // Clear the input
@@ -228,34 +222,5 @@ const Header = () => {
         </header>
     );
 }
-
-
-// Prepare the macStateToProps and mapDispatchToProps functions
-
-// const mapStateToProps = (state) => {
-//     return {
-//         isLoading: state.isLoading,
-//         sendData: state.sendData,
-//     }
-// }
-
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         sendData: (data) => {
-//             dispatch({
-//                 type: 'SEND_DATA',
-//                 value: data
-//             })
-//         },
-//         loadingState: (isLoading) => {
-//             dispatch({
-//                 type: 'LOADING_STATE',
-//                 value: isLoading
-//             })
-//         }
-//     }
-// }
-
 
 export default Header;
