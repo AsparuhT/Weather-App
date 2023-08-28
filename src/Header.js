@@ -13,8 +13,9 @@ const Header = () => {
     const dispatch = useDispatch();
 
     // API credentails
-    const owm_api_key = "8b0e43f517b46e5f056127d61f23aec8";
-    const my_search_api_token = "NVnzehVRz0";
+    const owm_api_key = process.env.REACT_APP_OWM_API_KEY;
+    const my_search_api_token = process.env.REACT_APP_MY_SEARCH_API_TOKEN;
+
 
 
     // States
@@ -195,8 +196,8 @@ const Header = () => {
             <input
                 type="text"
                 onKeyDown={enterKeyEventListener}
-                onChange={handleChange}
-                onKeyUp={getSearchResults}
+                onChange={handleChange} // inputValidation
+                onKeyUp={getSearchResults} 
                 value={city}
                 ref={inputRef}
             />

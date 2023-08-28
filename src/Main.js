@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import weatherData from "./redux_toolkit/weatherData";
+//import weatherData from "./redux_toolkit/weatherData";
 
 
 
@@ -9,7 +9,6 @@ const Main = () => {
     const { data } = useSelector(state => state.weatherData);
     let { isLoading } = useSelector(state => state.weatherData);
 
-    console.log(isLoading);
 
 
 
@@ -52,7 +51,7 @@ const Main = () => {
             setHumidity(data.list[0].main.humidity);
         }
 
-       console.log(data);
+     //  console.log(data);
     }, [data]); // Only re-run the effect if the `data` prop changes
 
 
@@ -93,13 +92,5 @@ const Main = () => {
     );
 }
 
-// In order to get the state as from the store, we create the 'mapStateToProps' function. It
-// takes the store state as a propery and returns an Object, with the props(data), we want from the  store
-// const mapStateToProps = (state) => {
-//     return {
-//         data: state.data,
-//         isLoading: state.isLoading
-//     }
-// }
 
 export default Main;
