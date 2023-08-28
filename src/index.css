@@ -183,7 +183,7 @@ code {
     animation: spin 0.5s linear infinite;
 
     position: absolute;
-    top: 60px;
+    /* top: 60px; */
     right: 80px;
   }
   

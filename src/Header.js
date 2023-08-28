@@ -15,7 +15,6 @@ import { setWarning, setSearchResults } from "./redux_toolkit/weatherData"
 const Header = () => {
     // Get the data and set the dispatcher
     const { warning } = useSelector(state => state.weatherData);
-    const { searchResults } = useSelector(state => state.weatherData);
     const dispatch = useDispatch();
 
     // Get the custom hook functions
@@ -24,7 +23,7 @@ const Header = () => {
 
     // API credentails
     const owmApiKey = process.env.REACT_APP_OWM_API_KEY;
-    const myAearchApiToken = process.env.REACT_APP_MY_SEARCH_API_TOKEN;
+    const myApiToken = process.env.REACT_APP_MY_SEARCH_API_TOKEN;
 
     // States and Refs
     const [city, setCity] = useState('');
@@ -37,7 +36,7 @@ const Header = () => {
 
     // Get the user input and perform checks to show or hide warnings
     // Also manage the timer reset
-    function inputVal(e) {
+    function inputValidation(e) {
         handleChange(e, searchTimerRef);
         // Set the city
         setCity(e.target.value);
@@ -53,7 +52,7 @@ const Header = () => {
             }
             // Set the keyUp timer
             searchTimerRef.current = setTimeout(() => {
-                fetchCityList(`https://city-list.atenev.com/autoComplete.php?q=${e.target.value}&mytoken=${myAearchApiToken}`)
+                fetchCityList(`https://city-list.atenev.com/autoComplete.php?q=${e.target.value}&mytoken=${myApiToken}`)
             }, 1000);
         }
     } // end of getSearchResults
@@ -102,7 +101,7 @@ const Header = () => {
             <input
                 type="text"
                 onKeyDown={enterKeyEventListener}
-                onChange={inputVal} // inputValidation
+                onChange={inputValidation} // inputValidation
                 onKeyUp={getSearchResults}
                 value={city}
                 ref={inputRef}
