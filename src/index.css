@@ -95,7 +95,7 @@ code {
   background: #fff;
   width: clamp(200px, 100%, 300px);
   list-style: none;
-  border-radius: 10px 10px 30px 30px;
+  border-radius: 10px 10px 10px 10px;
 }
 
 .search-results li {
@@ -183,7 +183,7 @@ code {
     animation: spin 0.5s linear infinite;
 
     position: absolute;
-    top: 56px;
+    top: 60px;
     right: 80px;
   }
   

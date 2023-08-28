@@ -2,7 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   data: null,
-  isLoading: false
+  isLoading: false,
+  warning: null,
+  searchResults: null
 }
 
 export const weatherData = createSlice({
@@ -15,12 +17,18 @@ export const weatherData = createSlice({
       state.data = action.payload
     },
     loadingState: (state, action) => {
-        state.isLoading = action.payload
+      state.isLoading = action.payload
+    },
+    setWarning: (state, action) => {
+      state.warning = action.payload
+    },
+    setSearchResults: (state, action) => {
+      state.searchResults = action.payload
     }
   },
 })
 
-// Action creators are generated for each case reducer function
-export const { sendData, isLoading, loadingState } = weatherData.actions
+// Export the actions
+export const { sendData, loadingState, setWarning, setSearchResults } = weatherData.actions
 
 export default weatherData.reducer

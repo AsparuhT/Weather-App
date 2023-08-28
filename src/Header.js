@@ -1,189 +1,95 @@
 import { useState, useEffect, useRef } from "react";
-import { connect, useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+// Import Components
 import LoadingSpinner from "./LoadingSpinner";
+import SearchResults from "./SearchResults";
+// Import Custom hooks
+import useFetchResults from "./useFetchResults";
+import useFocusOnLoad from "./useFocusOnLoad";
+import useInputValidation from "./useInputValidation";
 // Import actions
-import { sendData, isLoading, loadingState } from "./redux_toolkit/weatherData"
+import { setWarning, setSearchResults } from "./redux_toolkit/weatherData"
 
 
 
 const Header = () => {
-    //configure the dispatcher, using the useDispatch hook
-    // when we call it we will pass the actions we have set for that reducer / slice
-    let { isLoading } = useSelector(state => state.weatherData);
+    // Get the data and set the dispatcher
+    const { warning } = useSelector(state => state.weatherData);
+    const { searchResults } = useSelector(state => state.weatherData);
     const dispatch = useDispatch();
 
+    // Get the custom hook functions
+    const { fetchResultsByURL, fetchCityList, loadingSpinner } = useFetchResults();
+    const { handleChange } = useInputValidation();
+
     // API credentails
-    const owm_api_key = process.env.REACT_APP_OWM_API_KEY;
-    const my_search_api_token = process.env.REACT_APP_MY_SEARCH_API_TOKEN;
+    const owmApiKey = process.env.REACT_APP_OWM_API_KEY;
+    const myAearchApiToken = process.env.REACT_APP_MY_SEARCH_API_TOKEN;
 
-
-
-    // States
+    // States and Refs
     const [city, setCity] = useState('');
-    const [warning, setWarning] = useState(null);
-    const [loadingSpinner, setLoadingSpinner] = useState(null);
+    const searchTimerRef = useRef(null);
 
+
+    // Add focus on the user input on page load
+    const inputRef = useFocusOnLoad();
 
 
     // Get the user input and perform checks to show or hide warnings
     // Also manage the timer reset
-    function handleChange(e) {
-        let inputValue = e.target.value;
-
-        // Clear the searchResults and timer if input is clear
-        if(inputValue.length < 2) {
-            setSearchResults(null);
-            clearTimeout(searchTimerRef.current);
-        }
-
-        // Clear the warning
-        if(inputValue.length >= 0) {
-            setWarning(null);
-        }
-
-        // Check for comma and show a warning
-        if(inputValue.includes(',')) {
-            setWarning('Commas are not allowed.');
-        }
-
-        if(inputValue.length > 50) {
-            setWarning('Maximum 50 characters are allowed.');
-        }
-
+    function inputVal(e) {
+        handleChange(e, searchTimerRef);
         // Set the city
-        setCity(inputValue);
-    } // end of handleChange
-
-
-
-    // Check if 2 seconds have passed since the last letter
-    // and then, run fetch based on the reustls
-    // Minimum of 2 characters shoulld be added
-    const [searchResults, setSearchResults] = useState(null);
-    const searchTimerRef = useRef(null);
+        setCity(e.target.value);
+    }
 
 
     // Check the user input and starts the Search Timer its there are more then 2 characters
     function getSearchResults(e) {
         if (e.target.value.length >= 2) {
-            //console.log(e.target.value);
-
             // Clear the timer if keyUps is activated again
             if (searchTimerRef.current) {
                 clearTimeout(searchTimerRef.current);
             }
-
             // Set the keyUp timer
             searchTimerRef.current = setTimeout(() => {
-                setLoadingSpinner(true);
-
-                fetch(`https://city-list.atenev.com/autoComplete.php?q=${e.target.value}&mytoken=${my_search_api_token}`)
-                    .then(res => {
-                        if (!res.ok) {
-                            setLoadingSpinner(true);
-                            throw new Error('Autoloading request failed...')
-                        }
-                        return res.json();
-                    })
-                    .then(searchResult => {
-                        setLoadingSpinner(null);
-                        setSearchResults(searchResult);
-                    })
-                    .catch(err => {
-                        setLoadingSpinner(null);
-                      //  setWarning(err.message);
-                        console.log(err);
-                    })
-            }, 1500);
+                fetchCityList(`https://city-list.atenev.com/autoComplete.php?q=${e.target.value}&mytoken=${myAearchApiToken}`)
+            }, 1000);
         }
     } // end of getSearchResults
 
 
-
-
     // Fetch results if <li> element is clicked on
     function fetchResults(cityID) {
-        // Set Loading...
-        dispatch(loadingState(true));
 
-        fetch(`http://api.openweathermap.org/data/2.5/forecast?id=${cityID}&appid=${owm_api_key}&units=metric`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('City not found');
-                }
-                return response.json()
-            })
-            .then((data) => {
-                //Clear Loading...
-                dispatch(loadingState(false));
-                //setData(data);
-                dispatch(sendData(data));
-                // Clear the warning
-                setWarning(null);
-            })
-            .catch(err => {
-                //Clear Loading...
-                dispatch(loadingState(false));
-                setWarning(err.message);
-            }) // end of fetch.then.then.catch
+        fetchResultsByURL(`http://api.openweathermap.org/data/2.5/forecast?id=${cityID}&appid=${owmApiKey}&units=metric`);
+
         // Clear the input
         setCity('');
         // Clear the searchResults
-        setSearchResults(null);
-        //reutn the focus on the input
+        dispatch(setSearchResults(null));
+        // Return the focus on the input
         inputRef.current.focus();
-
-
     } // end of fetchResults()
-
-
-
-
-    // Add focus on the user input on page load
-    const inputRef = useRef(null);
-    useEffect(() => {
-        if (inputRef) {
-            inputRef.current.focus();
-        }
-    }, []);
 
 
     // Add event listener for the <input> / Enter key. Make the fetch call
     function enterKeyEventListener(e) {
         if (e.key === 'Enter') {
-            // Set Loading...
-            dispatch(loadingState(true));
+            // Check if there is at least one character
+            if (e.target.value < 2) {
+                dispatch(setWarning('Enter at least 2 character'));
+                return;
+            }
             // Clear the timer
             clearTimeout(searchTimerRef.current);
             // Clear the search results
-            setSearchResults(null);
+            dispatch(setSearchResults(null));
 
+            fetchResultsByURL(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${owmApiKey}&units=metric`);
 
-            // Get the data for the selected City - normal fetch
-            fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${owm_api_key}&units=metric`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('City not found');
-                    }
-                    return response.json()
-                })
-                .then((data) => {
-                    //Clear Loading...
-                    dispatch(loadingState(false));
-                    //setData(data);
-                    dispatch(sendData(data));
-                    // Clear the warning
-                    setWarning(null);
-
-                })
-                .catch(err => {
-                    //Clear Loading...
-                    dispatch(loadingState(false));
-                    setWarning(err.message);
-                }) // end of fetch.then.then.catch
             // Clear the input
             setCity('');
-
         };// end of if 'Enter'
     } // end of enterKeyEventListener
 
@@ -196,30 +102,15 @@ const Header = () => {
             <input
                 type="text"
                 onKeyDown={enterKeyEventListener}
-                onChange={handleChange} // inputValidation
-                onKeyUp={getSearchResults} 
+                onChange={inputVal} // inputValidation
+                onKeyUp={getSearchResults}
                 value={city}
                 ref={inputRef}
+                maxLength="50"
             />
             {loadingSpinner && <LoadingSpinner />}
 
-            
-
-
-            {searchResults && searchResults.length > 0 && (
-                <ul className="search-results">
-                    {searchResults.map((result) => (
-                        <li key={result.id} onClick={() => fetchResults(result.id)}>{`${result.name}, ${result.country}`}</li>
-                    ))}
-                </ul>
-            )}
-
-            {searchResults && searchResults.length === 0 && (
-                <ul className="search-results">
-                    <p className="no-matches">No matches found ...</p>
-                </ul>
-            )}
-
+            <SearchResults fetchResults={fetchResults} />
         </header>
     );
 }

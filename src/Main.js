@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-//import weatherData from "./redux_toolkit/weatherData";
+import { useSelector } from "react-redux";
 
 
 
@@ -55,7 +54,6 @@ const Main = () => {
     }, [data]); // Only re-run the effect if the `data` prop changes
 
 
-    //console.log(data);
 
     return (
         <main>
