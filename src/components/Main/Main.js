@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { capitalizeWords } from "../../utils/capitalizeWords";
 
 
 
@@ -19,13 +20,6 @@ const Main = () => {
     let [humidity, setHumidity] = useState('0');
     let [image, setImage] = useState('Clear');
 
-
-    // Capitalize the first letter of a word in a string
-    function capitalizeWords(str) {
-        return str.split(' ')
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ');
-    }
 
     // useEffect to handle changes in the data state
     useEffect(() => {
@@ -66,7 +60,7 @@ const Main = () => {
                 </div>
             </div>
 
-            <div className="weather-image"><img src={require(`./images/${image}.webp`)} alt="" /></div>
+            <div className="weather-image"><img src={require(`../../images/${image}.webp`)} alt="" /></div>
 
             <div className="flex">
                 <div className="feels-like">

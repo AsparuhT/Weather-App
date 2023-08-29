@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { sendData, loadingState, setWarning, setSearchResults } from "./redux_toolkit/weatherData";
+import { sendData, loadingState, setWarning, setSearchResults } from "../redux/weatherData";
 
 const useFetchResults = () => {
     const dispatch = useDispatch();

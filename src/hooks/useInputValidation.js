@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setWarning, setSearchResults } from "./redux_toolkit/weatherData";
+import { setWarning, setSearchResults } from "../redux/weatherData";
 
 const useInputValidation = () => {
 

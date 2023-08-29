@@ -8,7 +8,7 @@ import App from './App';
 */
 import { Provider } from 'react-redux';
 // import the store
-import { store } from './redux_toolkit/store';
+import { store } from './redux/store';
 
 
 

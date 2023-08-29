@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import LoadingSpinner from "./LoadingSpinner";
 import SearchResults from "./SearchResults";
 // Import Custom hooks
-import useFetchResults from "./useFetchResults";
-import useFocusOnLoad from "./useFocusOnLoad";
-import useInputValidation from "./useInputValidation";
+import useFetchResults from "../../hooks/useFetchResults";
+import useFocusOnLoad from "../../hooks/useFocusOnLoad";
+import useInputValidation from "../../hooks/useInputValidation";
 // Import actions
-import { setWarning, setSearchResults } from "./redux_toolkit/weatherData"
+import { setWarning, setSearchResults } from "../../redux/weatherData"
 
 
 
@@ -35,10 +35,9 @@ const Header = () => {
 
 
     // Get the user input and perform checks to show or hide warnings
-    // Also manage the timer reset
+    // Also  reset the timer when needed. Set the city name
     function inputValidation(e) {
         handleChange(e, searchTimerRef);
-        // Set the city
         setCity(e.target.value);
     }
 
@@ -50,7 +49,7 @@ const Header = () => {
             if (searchTimerRef.current) {
                 clearTimeout(searchTimerRef.current);
             }
-            // Set the keyUp timer
+            // Start the keyUp timer
             searchTimerRef.current = setTimeout(() => {
                 fetchCityList(`https://city-list.atenev.com/autoComplete.php?q=${e.target.value}&mytoken=${myApiToken}`)
             }, 1000);
