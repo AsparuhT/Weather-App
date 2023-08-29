@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // Import Components
 import LoadingSpinner from "./LoadingSpinner";
@@ -43,7 +43,7 @@ const Header = () => {
     }
 
 
-    // Check the user input and starts the Search Timer its there are more then 2 characters
+    // Check the user input and starts the Search Timer if there are more then 2 characters
     function getSearchResults(e) {
         if (e.target.value.length >= 2) {
             // Clear the timer if keyUps is activated again
@@ -72,7 +72,7 @@ const Header = () => {
     } // end of fetchResults()
 
 
-    // Add event listener for the <input> / Enter key. Make the fetch call
+    // Add event listener for the <input> / Enter key. Make a fetch call
     function enterKeyEventListener(e) {
         if (e.key === 'Enter') {
             // Check if there is at least one character
@@ -108,7 +108,6 @@ const Header = () => {
                 maxLength="50"
             />
             {loadingSpinner && <LoadingSpinner />}
-
             <SearchResults fetchResults={fetchResults} />
         </header>
     );
