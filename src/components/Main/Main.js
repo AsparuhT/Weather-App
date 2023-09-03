@@ -11,7 +11,7 @@ const Main = () => {
 
     // States
     let [cityName, setCityName] = useState('City Name');
-    let [cityCountry, setCityCountry] = useState('');
+    let [cityCountry, setCityCountry] = useState('Country Code');
     let [degrees, setDegrees] = useState('0');
     let [minDegrees, setMinDegrees] = useState('0');
     let [maxDegrees, setMaxDegrees] = useState('0');
@@ -60,7 +60,7 @@ const Main = () => {
                 </div>
             </div>
 
-            <div className="weather-image"><img src={require(`../../images/${image}.webp`)} alt="" /></div>
+            <div className="weather-image"><img src={require(`../../assets/images/${image}.webp`)} alt="" /></div>
 
             <div className="flex">
                 <div className="feels-like">
