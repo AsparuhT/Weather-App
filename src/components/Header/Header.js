@@ -60,7 +60,7 @@ const Header = () => {
     // Fetch results if <li> element is clicked on
     function fetchResults(cityID) {
 
-        fetchResultsByURL(`http://api.openweathermap.org/data/2.5/forecast?id=${cityID}&appid=${owmApiKey}&units=metric`);
+        fetchResultsByURL(`https://api.openweathermap.org/data/2.5/forecast?id=${cityID}&appid=${owmApiKey}&units=metric`);
 
         // Clear the input
         setCity('');
