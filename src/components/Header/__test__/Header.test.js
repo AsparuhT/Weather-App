@@ -27,7 +27,7 @@ describe('<Header />', () => {
         store = mockStore({
             weatherData: { warning: null }
         });
-    });// end of store
+    });
 
 
     // Check if the warning message displays
