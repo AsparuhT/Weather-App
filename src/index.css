@@ -51,6 +51,12 @@ img {
 }
 
 
+/* code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+
+
 
 header {
   text-align: center;
@@ -60,7 +66,7 @@ header {
 main {
   font-size: 18px;
   text-align: center;
-  min-height: 400px;
+  /* min-height: 400px; */
   background: #fff;
   margin: 16px auto;
   padding: 24px 16px;
@@ -73,10 +79,6 @@ main {
 
 
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 
 .container {
   width: clamp(375px, 100%, 460px);
@@ -161,6 +163,27 @@ code {
   font-weight: 300;
 }
 
+  /* Forecast */
+
+  .forecast {
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+    margin-top: 24px;
+    color: var(--clr-font-primary);
+  }
+
+  .hourly_forecast {
+    width: 60px;
+  }
+
+  .forecast-image {
+    margin-top: 10px;
+  }
+
+
+
+
 
 
   /* Utility Classes */
@@ -193,4 +216,19 @@ code {
   }
 
 
+  /* @media (max-width: 1000px) {
 
+    .container {
+      margin: 20px auto;
+    }
+  } */
+
+  @media (min-width: 700px) and (max-width: 1000px) {
+
+    .container {
+      width: clamp(680px, 100%, 700px);
+      margin: auto;
+      padding: 16px;
+    }
+  }
+  
