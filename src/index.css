@@ -1,8 +1,18 @@
 :root {
   --clr-background-gradient: linear-gradient(90deg, rgba(191, 226, 205, 1) 0%, rgba(191, 226, 205, 1) 35%, rgba(86, 202, 221, 1) 100%);
-
   --clr-font-primary: #707070;
+  --clr-white: #fff;
+  --clr-firebrick: #b22222;
+  --clr-red: #e96e50;
+  --clr-azure: #f0ffff;
 
+  --fs-small-12px: 0.75rem; /*  12px */
+  --fs-small-14px: 0.875rem; /*  14px */
+  --fs-primary-16px: 1rem; /*  16px */
+  --fs-primary-17px: 1.063rem; /*  17px */
+  --fs-primary-18px: 1.125rem; /*  18px */
+  --fs-medium-28px: 1.75rem; /*  28px */
+  --fs-large-60px: 3.75rem; /*  60px */
 }
 
 
@@ -21,26 +31,26 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: var(--clr-background-gradient);
-  color: #707070;
-  font-size: 16px;
+  color: var(--clr-font-primary);
+  font-size: var(--fs-primary-16px);
 }
 
 h2 {
-  font-size: 18px;
+  font-size: var(--fs-primary-18px);
   font-weight: 400;
 }
 
 input,
 main {
-  width: clamp(200px, 100%, 300px);
+  width: 300px;
   border-radius: 30px;
-  color: #707070;
+  color: var(--clr-font-primary);
 }
 
 input {
   padding: 12px 54px 12px 20px;
   margin-top: 10px;
-  font-size: 17px;
+  font-size: var(--fs-primary-17px);
 }
 
 input:focus {
@@ -65,9 +75,9 @@ header {
 }
 
 main {
-  font-size: 18px;
+  font-size: var(--fs-primary-18px);
   text-align: center;
-  background: #fff;
+  background: var(--clr-white);
   margin: 16px auto;
   padding: 24px 16px;
 
@@ -87,14 +97,14 @@ main {
 }
 
 .warning-message {
-  color: firebrick;
+  color: var(--clr-firebrick);
 }
 
 
 /* Search Resullts */
 .search-results {
   margin: 1px auto;
-  background: #fff;
+  background: var(--clr-white);
   width: clamp(200px, 100%, 300px);
   list-style: none;
   border-radius: 10px 10px 10px 10px;
@@ -106,12 +116,12 @@ main {
 }
 
 .search-results li:not(:last-child) {
-  border-bottom: 1px solid #e96e50;
+  border-bottom: 1px solid var(--clr-red);
 }
 
 
 .search-results li:hover {
-  background-color: azure;
+  background-color: var(--clr-azure);
 }
 
 .no-matches {
@@ -127,19 +137,19 @@ main {
 }
 
 .degree-meter__text {
-  font-size: 60px;
+  font-size: var(--fs-large-60px);
   font-weight: 100;
 }
 
 .cloudness-info__text {
   margin-top: 12px;
-  font-size: 14px;
+  font-size: var(--fs-small-14px);
   font-weight: 700;
 }
 
 .cloudness-info__max,
 .cloudness-info__min {
-  font-size: 14px;
+  font-size: var(--fs-small-14px);
 }
 
 .weather-image {
@@ -154,13 +164,13 @@ main {
 
 .feels-like__degrees,
 .humidity__percentages {
-  font-size: 28px;
+  font-size: var(--fs-medium-28px);
   font-weight: 100;
 }
 
 .feels-like__text,
 .humidity__text {
-  font-size: 12px;
+  font-size: var(--fs-small-12px);
   font-weight: 300;
 }
 
@@ -182,13 +192,6 @@ main {
   margin-top: 10px;
   width: 60px;
 }
-
-
-
-
-
-
-
 
 
 
