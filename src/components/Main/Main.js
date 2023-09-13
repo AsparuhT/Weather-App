@@ -58,8 +58,7 @@ const Main = () => {
 
 
         }
-
-        console.log(data)
+        // console.log(data)
     }, [data]); // Only re-run the effect if the `data` state changes
 
 
