@@ -12,11 +12,12 @@ const mockStore = configureStore();
 
 
 describe('<Main />', () => {
-    // Mock data here
+    // Mock data / store here
     let store;
 
     beforeEach(() => {
-        store = mockStore({
+        // Set the store before any if the tests are executed
+        store = mockStore({ // Initiate a moch store
             weatherData: {
                 data: {
                     city: {

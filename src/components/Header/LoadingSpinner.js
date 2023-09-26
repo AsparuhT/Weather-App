@@ -7,7 +7,7 @@ const LoadingSpinner = () => {
     const { warning } = useSelector(state => state.weatherData);
 
 
-    // Here we want to
+    // Add style conditionnally
     const spinnerStyle = {
       // if there is a warning, add different positioning values, so the loading spinner animation is always in the middle of the input field, u
         top: warning ? '80px' : '60px' 

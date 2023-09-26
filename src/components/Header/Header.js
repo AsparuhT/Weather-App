@@ -30,7 +30,7 @@ const Header = () => {
 
     // States and Refs
     const [city, setCity] = useState('');
-    const searchTimerRef = useRef(null);
+    const searchTimerRef = useRef(null); // ref to the auto-complete timer
 
 
     // Add focus on the user input on page load
@@ -40,19 +40,20 @@ const Header = () => {
     // Get the user input and perform checks to show or hide warnings
     // Also  reset the timer when needed. Set the city name
     function inputValidation(e) {
-        handleChange(e, searchTimerRef);
+        handleChange(e, searchTimerRef); // imported from the useInputValidation() hook
         setCity(e.target.value);
     }
 
 
-    // Check the user input and starts the Search Timer if there are more then 2 characters
+    // Check the input and starts the Search Timer if there are 2 or more characters
     function getSearchResults(e) {
         if (e.target.value.length >= 2) {
             // Clear the timer if keyUps is activated again
             if (searchTimerRef.current) {
                 clearTimeout(searchTimerRef.current);
             }
-            // Start the keyUp timer
+            // Start the auto-complete timer
+            // Will return array with top 5 matches or an empty array if nothing is found
             searchTimerRef.current = setTimeout(() => {
                 fetchCityList(`https://city-list.atenev.com/autoComplete.php?q=${e.target.value}&mytoken=${myApiToken}`)
             }, 1000);
@@ -60,14 +61,13 @@ const Header = () => {
     } // end of getSearchResults
 
 
-    // Fetch results if <li> element is clicked on
+    // Fetch results if an <li> element is clicked on
     function fetchResults(cityID) {
 
         fetchResultsByURL(`https://api.openweathermap.org/data/2.5/forecast?id=${cityID}&appid=${owmApiKey}&units=metric`);
 
-        // Clear the input
+        // Clear the input and the search results llist
         setCity('');
-        // Clear the searchResults
         dispatch(setSearchResults(null));
         // Return the focus on the input
         inputRef.current.focus();
@@ -75,6 +75,8 @@ const Header = () => {
 
 
     // Add event listener for the <input> / Enter key. Make a fetch call
+    // Will search for the location added in the input and display the weather data if such
+    // Or will show an error that the 'City is not found'
     function enterKeyEventListener(e) {
         if (e.key === 'Enter') {
             // Check if there is at least one character
@@ -82,15 +84,14 @@ const Header = () => {
                 dispatch(setWarning('Enter at least 2 character'));
                 return;
             }
-            // Clear the timer
-            clearTimeout(searchTimerRef.current);
-            // Clear the search results
-            dispatch(setSearchResults(null));
 
             fetchResultsByURL(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${owmApiKey}&units=metric`);
 
-            // Clear the input
+            // Clear the input and the search results list
             setCity('');
+            dispatch(setSearchResults(null));
+            // Clear the auto-complete timer
+            clearTimeout(searchTimerRef.current);
         };// end of if 'Enter'
     } // end of enterKeyEventListener
 
@@ -103,12 +104,14 @@ const Header = () => {
             {warning && <p className="warning-message">{warning}</p>}
             <input
                 type="text"
-                onKeyDown={enterKeyEventListener}
-                onChange={inputValidation}
-                onKeyUp={getSearchResults}
+                onKeyDown={enterKeyEventListener} // Listen for Enter key press
+                onChange={(e) => {
+                    inputValidation(e); // Triggers handleChange() and sets the city state
+                    getSearchResults(e); // Triggers the auto-complete
+                }}
                 value={city}
                 ref={inputRef}
-                maxLength="50"
+                maxLength="50" // No more then 50 chars
             />
             {loadingSpinner && <LoadingSpinner />}
             <SearchResults fetchResults={fetchResults} />

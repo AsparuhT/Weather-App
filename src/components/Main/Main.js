@@ -19,7 +19,7 @@ const Main = () => {
     let [feelsLike, setFeelsLike] = useState('0');
     let [humidity, setHumidity] = useState('0');
     let [image, setImage] = useState('Clear');
-    // Add forecast
+    // Add forecast. f stands for forecaste here = forecast 6h -f6h for example
     let [f6hDegrees, setF6hDegrees] = useState('0');
     let [f12hDegrees, setF12hDegrees] = useState('0');
     let [f24hDegrees, setF24hDegrees] = useState('0');

@@ -9,6 +9,7 @@ const mockStore = configureStore();
 
 
 // Mock dispatch
+// Will be needed to test the Enter key functionality
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => ({
     ...jest.requireActual('react-redux'),
@@ -19,12 +20,12 @@ jest.mock('react-redux', () => ({
 
 
 describe('<Header />', () => {
-    // Mock data/ store here
+    // Mock data / store here
     let store;
 
     beforeEach(() => {
         // Set the store before any if the tests are executed
-        store = mockStore({
+        store = mockStore({ // Initialize the mock store
             weatherData: { warning: null }
         });
     });
