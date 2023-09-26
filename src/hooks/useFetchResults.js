@@ -53,7 +53,7 @@ const useFetchResults = () => {
                         return res.json();
                     })
                     .then(searchResult => {
-                        setLoadingSpinner(false);
+                        setLoadingSpinner(null);
                         dispatch(setSearchResults(searchResult));
                     })
                     .catch(err => {

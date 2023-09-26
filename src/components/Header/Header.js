@@ -20,6 +20,8 @@ const Header = () => {
     // Get the custom hook functions
     const { fetchResultsByURL, fetchCityList, loadingSpinner } = useFetchResults();
     const { handleChange } = useInputValidation();
+    // 1. fetchResultsByURL and fetchCityList are fetch functions, as their names suggest
+    // 2. loadingSpinner is a state with initial value of null. If its value changes to true that will render the LoadingSpinner component, which is the loading spinner animation for the auto-complete functionallity. It's values changes to true/null though the function - fetchCityList
 
     // API credentails
     const owmApiKey = process.env.REACT_APP_OWM_API_KEY;
