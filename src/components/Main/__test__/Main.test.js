@@ -17,7 +17,7 @@ describe('<Main />', () => {
 
     beforeEach(() => {
         // Set the store before any if the tests are executed
-        store = mockStore({ // Initiate a moch store
+        store = mockStore({
             weatherData: {
                 data: {
                     city: {
@@ -26,26 +26,56 @@ describe('<Main />', () => {
                     },
                     list: [
                         {
-                            main: {
+                            main: { // 0th Element
                                 temp: 25,
                                 temp_min: 22,
                                 temp_max: 28,
-                                feels_like: 24,
+                                feels_like: 23,
                                 humidity: 60
                             },
-                            weather: [
-                                {
-                                    description: "clear sky",
-                                    main: "Clear"
-                                }
-                            ]
-                        }
+                            weather: [{ description: "clear sky", main: "Clear" }]
+                        },
+                        {}, // 1st Element Placeholder
+                        {
+                            main: { // 2nd Element // 6h
+                                temp: 6,
+                                temp_min: 24,
+                                temp_max: 30,
+                                feels_like: 26,
+                                humidity: 70
+                            },
+                            weather: [{ description: "light rain", main: "Rain" }]
+                        },
+                        {}, // 3rd Element Placeholder
+                        {
+                            main: { // 4th Element // 12h
+                                temp: 12,
+                                temp_min: 26,
+                                temp_max: 32,
+                                feels_like: 28,
+                                humidity: 80
+                            },
+                            weather: [{ description: "heavy rain", main: "Rain" }]
+                        },
+                        {}, // 5th Element Placeholder
+                        {}, // 6th Element Placeholder
+                        {}, // 7th Element Placeholder
+                        {
+                            main: { // 8th Element // 24h
+                                temp: 24,
+                                temp_min: 27,
+                                temp_max: 33,
+                                feels_like: 29,
+                                humidity: 85
+                            },
+                            weather: [{ description: "snow", main: "Snow" }]
+                        },
                     ],
                 },
                 isLoading: false
             }
-        });
-    });// end of store
+        }); // end of store
+    }); // end of  beforeEach()
 
 
 
@@ -62,9 +92,11 @@ describe('<Main />', () => {
         expect(getByText('Clear Sky')).toBeInTheDocument();
         expect(getByText('Max: 28°C')).toBeInTheDocument();
         expect(getByText('Min: 22°C')).toBeInTheDocument();
-        expect(getByText('24°C')).toBeInTheDocument(); // feels like
+        expect(getByText('23°C')).toBeInTheDocument(); // feels like
         expect(getByText('60%')).toBeInTheDocument(); // humidity
-    })
-}) // end of describe()
-
-
+        // forecast
+        expect(getByText('6°C')).toBeInTheDocument(); //6h
+        expect(getByText('12°C')).toBeInTheDocument(); //12h
+        expect(getByText('24°C')).toBeInTheDocument(); //24h
+    });
+}); // end of describe()
