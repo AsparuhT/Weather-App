@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // Import Components
 import LoadingSpinner from "./LoadingSpinner";
@@ -22,6 +22,7 @@ const Header = () => {
     const { handleChange } = useInputValidation();
     // 1. fetchResultsByURL and fetchCityList are fetch functions, as their names suggest
     // 2. loadingSpinner is a state with initial value of null. If its value changes to true that will render the LoadingSpinner component, which is the loading spinner animation for the auto-complete functionallity. It's values changes to true/null though the function - fetchCityList
+    // 3. handleChange deals with the input validation, set warnings and reset the auto-compete timer
 
     // API credentails
     const owmApiKey = process.env.REACT_APP_OWM_API_KEY;
@@ -95,6 +96,7 @@ const Header = () => {
 
 
 
+
     return (
         <header>
             <h1>Weather In</h1>
@@ -102,7 +104,7 @@ const Header = () => {
             <input
                 type="text"
                 onKeyDown={enterKeyEventListener}
-                onChange={inputValidation} // inputValidation
+                onChange={inputValidation}
                 onKeyUp={getSearchResults}
                 value={city}
                 ref={inputRef}

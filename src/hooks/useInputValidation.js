@@ -2,7 +2,8 @@ import { useDispatch } from "react-redux";
 import { setWarning, setSearchResults } from "../redux/weatherData";
 
 
-// This hook sets warnings and reset the timer for the auto-complete functionality
+// This hook deals with the input validation
+// It sets warnings and reset the timer for the auto-complete functionality
 const useInputValidation = () => {
 
     const dispatch = useDispatch();
