@@ -45,6 +45,8 @@ This project is a dynamic Weather Application developed using React, Redux, and 
    npm run start
    ````
 
+- **In the branch called auto-complete, you will find further instuctions on setting up the auto-complete API endpoint** 
+
 ## Usage
 
 - **Search Weather:** Use the search bar to enter the location you want to check and hit the Enter key to view the corresponding weather data.
