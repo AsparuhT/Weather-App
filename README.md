@@ -45,7 +45,19 @@ This project is a dynamic Weather Application developed using React, Redux, and 
 ## Key Components
 The application has two key componnents. One to handle the user input and one to display the results. There are few suplemenotry componts too. The code of each component is very well commented. 
 
-- **Header**: This component is where the search bar is. It handles the user input. Any actions or events in the app are triggered though it.
+- **Header**: This component is where the search bar is. It handles the user input. Any action or event in the app are triggered though it.
 - **Main**: This component is where the weather data is displayed at.
 
 # Testing 
+
+The application includes unit tests for its components and various scenarios. To run the tests, use the following command:
+````
+npm run test
+````
+It has 3 test suites, incorporating a series of tests primarily focusing on the rendering ability of components, through a mock data store. These tests validate whether the components are rendering correctly and the expected output is being displayed based on varying inputs and states.
+
+````
+ PASS  src/App.test.js
+ PASS  src/components/Main/__test__/Main.test.js
+ PASS  src/components/Header/__test__/Header.test.js
+````
