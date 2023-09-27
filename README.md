@@ -4,7 +4,7 @@
 
 - **2. cityList.sql** - That is the MySQL database that contsins a list with the location provided by the Open Weather Map API. 
 
-## Usage
+## Setup
 
 - **Import the database:** Import the .sql file in a MySQL database.
 - **Connect the database to the autoComplete.php file:** Adjust the database credentials in that file so it connects to the database.
