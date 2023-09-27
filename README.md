@@ -1,8 +1,8 @@
 The two files in this branch are the backend of the auto-complete functionality.
 
-- **1. autoComplete.php ** - This file receives the fetch call from the weather app, validates it and perform a database query based on the passed query string. It returns array with the found results or rerurns an empty array if no results are found.
+- **1. autoComplete.php** - This file receives the fetch call from the weather app, validates it and perform a database query based on the passed query string. It returns array with the found results or rerurns an empty array if no results are found.
 
-- **2. cityList.sql ** - That is the MySQL database that contsins a list with the location provided by the Open Weather Map API. 
+- **2. cityList.sql** - That is the MySQL database that contsins a list with the location provided by the Open Weather Map API. 
 
 ## Usage
 
