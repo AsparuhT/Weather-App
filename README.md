@@ -34,9 +34,9 @@ This project is a dynamic Weather Application developed using React, Redux, and 
    
 3. **Add your API keys in the .env file as Global variables**
    ````
-   // Open Weather Map API key
+   # Open Weather Map API key
    REACT_APP_OWM_API_KEY="add your Open Weather API key here"
-   //API key for the auto-complete
+   # API key for the auto-complete
    REACT_APP_MY_SEARCH_API_TOKEN="if you don't have this key contact me and I will provde it to you"
    ````
 
