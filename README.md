@@ -8,5 +8,5 @@ The two files in this branch are the backend of the auto-complete functionality.
 
 - **Import the database:** Import the .sql file in a MySQL database.
 - **Connect the database to the autoComplete.php file:** Adjust the database credentials in that file so it connects to the database.
-- **Add its API:** If you don't have the API key, contact me so I can provide it to you.
+- **Add its 'my_token' API key:** If you don't have the API key, contact me so I can provide it to you.
 - **Adjust the fetch url:** In the Header componend of the app you will find a function called 'getSearchResults' which holds the current API endpoint URL for the auto-complete functioality. Replace it with your own, while retaining the query string it has.
