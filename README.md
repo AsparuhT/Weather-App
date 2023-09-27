@@ -36,8 +36,6 @@ This project is a dynamic Weather Application developed using React, Redux, and 
    ````
    // Open Weather Map API key
    REACT_APP_OWM_API_KEY=" add your Open Weather API key here "
-   ````
-   ````
   // API key for the auto-complete
   REACT_APP_MY_SEARCH_API_TOKEN=" if you don't have this key, contact me so I can provide it to you "
   ````
