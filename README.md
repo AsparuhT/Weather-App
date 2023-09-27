@@ -1,4 +1,4 @@
-The two files in this branch are the backend of the auto-complete functionality.
+## The two files in this branch are the backend of the auto-complete functionality.
 
 - **1. autoComplete.php** - This file receives the fetch call from the weather app, validates it and perform a database query based on the passed query string. It returns array with the found results or rerurns an empty array if no results are found.
 
