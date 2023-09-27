@@ -50,13 +50,13 @@ The application has two key componnents. One to handle the user input and one to
 
 # Testing 
 
-This project utilizes [Jest](https://jestjs.io/) as the testing framework and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) for writing unit and integration tests, primarily focusing on the way components render and function.
+This project utilizes [Jest](https://jestjs.io/) as the testing framework and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) for writing unit and integration tests.
 
 To run the tests, use the following command:
 ````
 npm run test
 ````
-It has 3 test suites, incorporating a series of tests primarily focusing on the rendering ability of components. Mock data is passed to the components with the aim is to validate whether the components are rendering correctly and the expected output is being displayed.
+It has 3 test suites, incorporating a series of tests primarily focusing on the rendering ability of components. Mock data is passed to the components and the aim is to validate whether the components are rendering correctly and the expected output is being displayed.
 
 ````
  PASS  src/App.test.js
