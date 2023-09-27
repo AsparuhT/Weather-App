@@ -8,11 +8,11 @@ $my_token = $_GET['mytoken'];
 
 if($my_token === "Replace with the .env file token called REACT_APP_MY_SEARCH_API_TOKEN") {
 
-
+    // Add your database credentials here
     $servername = "localhost";
-    $username = "un87h8t5qyhh9";
-    $password = "asio123345";
-    $dbname = "dbe8ndrwurbv7d";
+    $username = "XXX";
+    $password = "XXX";
+    $dbname = "XXX";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
