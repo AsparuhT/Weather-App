@@ -35,3 +35,9 @@ This project is a dynamic Weather Application developed using React, Redux, and 
    ````
    npm run start
    ````
+
+## Usage
+
+- **Search Weather:** Use the search bar to enter the location and view the corresponding weather data.
+- **Auto-complete Suggestions:** As you start typing in the search bar, the app will suggest possible locations.
+
