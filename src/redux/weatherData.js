@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+// Set the initial states
 const initialState = {
-  data: null,
-  isLoading: false,
-  warning: null,
-  searchResults: null
+  data: null, // the weather data
+  isLoading: false, // will show is loading sign while the data is fetched
+  warning: null, // will hold warning
+  searchResults: null // array of the auto-complete search results
 }
-
+// The name of the slice that we will use in our components
 export const weatherData = createSlice({
-  // The name of the slice that we will use in our components
   name: 'rootSlice',
   initialState,
   reducers: {

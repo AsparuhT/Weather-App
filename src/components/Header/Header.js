@@ -53,7 +53,7 @@ const Header = () => {
                 clearTimeout(searchTimerRef.current);
             }
             // Start the auto-complete timer
-            // Will return array with top 5 matches or an empty array if nothing is found
+            // Will return array with top 6 matches or an empty array if nothing is found
             searchTimerRef.current = setTimeout(() => {
                 fetchCityList(`https://city-list.atenev.com/autoComplete.php?q=${e.target.value}&mytoken=${myApiToken}`)
             }, 1000);
