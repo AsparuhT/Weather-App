@@ -32,7 +32,7 @@ This project is a dynamic Weather Application developed using React, Redux, and 
    npm install
    ````
    
-3. **Add your API keys in the .env file as Global variables**
+3. **Add the API keys in the .env file as Global variables**
    ````
    # Open Weather Map API key
    REACT_APP_OWM_API_KEY="add your Open Weather API key here"
