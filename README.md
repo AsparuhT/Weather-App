@@ -53,7 +53,7 @@ This project is a dynamic Weather Application developed using React, Redux, and 
 - **Auto-complete Suggestions:** As you start typing in the search bar, the app will suggest possible locations. The suggested options are clickable and will show the weather data for that location when clicked on.
 
 ## Key Components
-The application has two key componnents. One to handle the user input and one to display the results. There are few suplemenotry componts too. The code of each component is very well commented. 
+The application has two key components. One to handle the user input and one to display the results. There are a few supplementary components too. The code of each component is very well commented.
 
 - **Header**: This component is where the search bar is. It handles the user input. Any action or event in the app are triggered though it.
 - **Main**: This component is where the weather data is displayed at.
