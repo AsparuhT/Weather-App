@@ -55,11 +55,23 @@ This project is a dynamic Weather Application developed using React, Redux, and 
 ## Key Components
 The application has two key components. One to handle the user input and one to display the results. There are a few supplementary components too. The code of each component is very well commented.
 
-- **Header**: This component is where the search bar is. It handles the user input. Any action or event in the app are triggered though it. The data flow, follows this path:
-   1. The user types in a location.
-   2. He can press Enter and search for it. The Enter keypress will trigger  fetch call to the Open Weather API and will return data with the resuls that will be displayed in the Main component. If there input is invalid, no data will be rendred in the Main component and the user will see a warning.
-   3. If the user does not hit Enter, the auto-complete will trigger after 1 second of no-typinng and will make fetch call that will return a list with suggested locations, or will show 'No matches' notice if there are no matches found.
-   4. If the auto-complete suggest locations, the user can click on one of them and a fetch call will be made to the Open Weather API. It will return data with the resuls that will be displayed in the Main component
+- **Header**: This component is where the search bar is. It handles the user input. Any action or event in the app are triggered though it. The data flow within the Header component follows this sequence:
+
+1. **User Input:**
+   The user begins by typing a location into the search bar.
+
+2. **Enter Key Press:**
+   - If the user presses the Enter key, a fetch request is triggered to the Open Weather API.
+   - If the input is valid, the fetched results are passed to and rendered in the Main component.
+   - If the input is invalid, no data is rendered in the Main component, and a warning message is displayed to the user.
+
+3. **Auto-complete:**
+   - If the user doesn’t press Enter, after one second of inactivity, the auto-complete feature triggers a fetch request.
+   - The fetched list of suggested locations is displayed, allowing the user to select one. If no matches are found, a 'No matches' notice is displayed.
+
+4. **Location Selection from Suggestions:**
+   - If a user clicks on a suggested location, another fetch request is made to the Open Weather API, and the results are displayed in the Main component.
+
 - **Main**: This component is where the weather data is displayed at. By default there is no data there and will populate only when there is a successful API call to the Open Weather API.
 
 # Testing 
