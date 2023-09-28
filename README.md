@@ -45,7 +45,7 @@ This project is a dynamic Weather Application developed using React, Redux, and 
    npm run start
    ````
 
-- **In the branch called auto-complete, you will find further instuctions on setting up the auto-complete API endpoint** 
+- **In the branch called auto-complete, you will find the auto-complete file and the city-list database. There are instuctions on setting up the auto-complete API endpoint with your own database  if you want to do so.** 
 
 ## Usage
 
