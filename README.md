@@ -6,6 +6,8 @@
 
 ## Setup
 
+- If you want to use the weather app, with the auto-complete functinality provided by me, there is no need to go over this setup. It will work as long as you add the API keys in the .env file, as explained in the README.md in the main branch. If you want to configure it on your own database / API endpoint, then go ahead with the following instructions.
+
 - **Import the database:** Import the .sql file in a MySQL database.
 - **Connect the database to the autoComplete.php file:** Adjust the database credentials in that file so it connects to the database.
 - **Add its 'my_token' API key:** If you don't have the API key, contact me so I can provide it to you.
