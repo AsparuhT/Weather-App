@@ -8,13 +8,13 @@ const useInputValidation = () => {
 
     const dispatch = useDispatch();
 
-
+    // This function gets called on input change
     function handleChange(e, searchTimerRef) {
-        let inputValue = e.target.value;
+        let inputValue = e.target.value; // get the value from the input
 
         // Clear the searchResults list and timer if the input is clear ot have less then 2 chars
         if (inputValue.length < 2) {
-            dispatch(setSearchResults(null));
+            dispatch(setSearchResults(null)); 
             if (searchTimerRef) {
                 clearTimeout(searchTimerRef.current);
             }
